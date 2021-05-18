@@ -38,7 +38,9 @@ export default function Home(props: HomeProps) {
               <li key={episode.id}>
                 <Image width={192} height={192} src={episode.thumbnail} alt={episode.title} objectFit="cover" />
                 <div className={styles.episodeDetails}>
-                  <a href="">{episode.title}</a>
+                  <Link href={`episode/${episode.id}`}>
+                    <a>{episode.title}</a>
+                  </Link>
                   <p>{episode.members}</p>
                   <p>{episode.publishedAt}</p>
                   <span>{episode.durationAsString}</span>
@@ -79,7 +81,7 @@ export default function Home(props: HomeProps) {
                     />
                   </td>
                   <td>
-                    <Link href={`/episodes/${episode.id}`}>
+                    <Link href={`/episode/${episode.id}`}>
                       <a>{episode.title}</a>
                     </Link>
                   </td>
