@@ -8,6 +8,7 @@ import { convertDurationToTimeString } from '../utils/stringUtils';
 import styles from './home.module.scss';
 import { useContext } from 'react';
 import { PlayerContext } from '../contexts/PlayerContext';
+import Head from 'next/head';
 
 
 type Episode = {
@@ -36,6 +37,9 @@ export default function Home(props: HomeProps) {
 
   return (
     <div className={styles.homepage}>
+      <Head>
+        <title>Home| podcastr </title>
+      </Head>
       <section className={styles.latestEpisodes}>
         <h2>Últimos lançamentos</h2>
         <ul>
