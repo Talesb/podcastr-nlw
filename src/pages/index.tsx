@@ -32,12 +32,14 @@ export default function Home(props: HomeProps) {
 
   const playerContext = useContext(PlayerContext);
 
+  const episodeList = [...props.latestEpisodes, ...props.allEpisodes]
+
   return (
     <div className={styles.homepage}>
       <section className={styles.latestEpisodes}>
         <h2>Últimos lançamentos</h2>
         <ul>
-          {props.latestEpisodes.map(episode => {
+          {props.latestEpisodes.map((episode, index) => {
             return (
               <li key={episode.id}>
                 <Image width={192} height={192} src={episode.thumbnail} alt={episode.title} objectFit="cover" />
@@ -50,7 +52,7 @@ export default function Home(props: HomeProps) {
                   <span>{episode.durationAsString}</span>
                 </div>
                 <button>
-                  <img onClick={() => playerContext.play(episode)} src="/play-green.svg" alt="Tocar Episodio" />
+                  <img onClick={() => playerContext.playList(episodeList, index)} src="/play-green.svg" alt="Tocar Episodio" />
                 </button>
               </li>
             )
@@ -93,7 +95,7 @@ export default function Home(props: HomeProps) {
                   <td style={{ width: 100 }}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
-                    <button type="button">
+                    <button type="button" onClick={() => playerContext.playList(episodeList, index + props.latestEpisodes.length)}>
                       <img src="/play-green.svg" alt="Tocar episódio" />
                     </button>
                   </td>
